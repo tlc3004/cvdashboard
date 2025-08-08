@@ -2,12 +2,21 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import DonutButton from './components/DonutButton'
+import DonutBitten from "./components/DonutBitten";
 
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [bitten, setBitten] = useState(false);
 
   const togglePanel = () => setIsOpen(!isOpen);
+
+  const handleClick = () => {
+    if (!bitten) {
+      setBitten(true);
+      setTimeout(() => setBitten(false), 500);
+    }
+  };
 
   return (
     <div className="relative min-h-screen p-6 overflow-hidden">
@@ -37,8 +46,9 @@ function App() {
           
           </motion.aside>
         )}
-            <div className="p-4 flex justify-center items-center min-h-screen bg-yellow-100">
-      <DonutButton />
+        <div className="flex gap-4 p-6">
+      <DonutButton bitten={bitten} onClick={handleClick} />
+      <DonutBitten bitten={bitten} onClick={handleClick} />
     </div>
 
       
