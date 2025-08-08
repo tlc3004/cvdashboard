@@ -1,7 +1,8 @@
 // src/App.jsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import SideBart from "./components/SideBart";
+import DonutButton from './components/DonutButton'
+
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,19 +26,22 @@ function App() {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ duration: 0.6 }}
-            className="fixed top-0 right-[-5%] w-72 h-full bg-white shadow-xl z-50 p-4 flex flex-col items-center"
+            transition={{ duration: 1 }}
+            className="fixed top-0 right-[-3%] w-72 h-full bg-white shadow-xl z-50 p-4 flex flex-col items-center"
           >
             <img
               src="/bart.png"
               alt="Bart mirando"
               className="w-40 mt-6 object-contain translate-x-6"
             />
-            <p className="mt-4 text-center text-gray-700 font-semibold">
-              ¡Ey! ¿Quién eres tú?
-            </p>
+          
           </motion.aside>
         )}
+            <div className="p-4 flex justify-center items-center min-h-screen bg-yellow-100">
+      <DonutButton />
+    </div>
+
+      
       </AnimatePresence>
     </div>
   );

@@ -8,9 +8,9 @@ export default function SideBart() {
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
       transition={{ duration: 0.6 }}
-      className="fixed right-0 top-0 w-64 h-full bg-yellow-100 shadow-lg z-50 flex flex-col items-center"
+      className="fixed left-[-20%] top-0 w-64 h-full bg-white-100 shadow-lg z-50 flex flex-col items-center"
     >
-      <img src="/bart.png" alt="Bart" className="w-32 mt-6 object-contain" />
+      <img src="/bart1.png" alt="Bart" className="w-40 mt-6 object-contain translate-x-6 easy-out" />
       <p className="mt-4 text-center text-gray-700 font-semibold">
         ¡Ey! ¿Quién eres tú?
       </p>
