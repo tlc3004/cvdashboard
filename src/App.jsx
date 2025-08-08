@@ -13,7 +13,7 @@ function App() {
       <button
         onClick={() => togglePanel(isOpen) }
         className="fixed top-6 right-[300px] w-20 h-20 rounded-full bg-no-repeat bg-cover bg-center shadow-lg hover:scale-105 transition-transform duration-300"
-        style={{backgroundImage:"url('/donat.png')"}}
+        style={{backgroundImage:"url('/donita.png')"}}
       >
        
       </button>
