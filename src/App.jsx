@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import SideBart from "./components/SideBart";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePanel = () => setIsOpen(!isOpen);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="relative min-h-screen p-6 overflow-hidden">
+      <button
+        onClick={() => togglePanel(isOpen) }
+        className="fixed top-6 right-[300px] w-20 h-20 rounded-full bg-no-repeat bg-cover bg-center shadow-lg hover:scale-105 transition-transform duration-300"
+        style={{backgroundImage:"url('/donat.png')"}}
+      >
+       
+      </button>
+
+      {/* PANEL SLIDER CON BART */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.aside
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.6 }}
+            className="fixed top-0 right-[-5%] w-72 h-full bg-white shadow-xl z-50 p-4 flex flex-col items-center"
+          >
+            <img
+              src="/bart.png"
+              alt="Bart mirando"
+              className="w-40 mt-6 object-contain translate-x-6"
+            />
+            <p className="mt-4 text-center text-gray-700 font-semibold">
+              ¡Ey! ¿Quién eres tú?
+            </p>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
-export default App
+export default App;
