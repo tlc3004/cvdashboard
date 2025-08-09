@@ -1,13 +1,16 @@
 import { useState } from "react";
+import useSound from "use-sound";
 
 export default function DonutButton({ onClick }) {
   const [bitte, setBitte] = useState(false);
+  const [play] = useSound("sounds/burpy-rulp.mp3");
 
   const handleClick = () => {
     if (!bitte) {
       setBitte(true);
-      if (onClick) onClick();    // <-- Dispara el onClick externo
-      setTimeout(() => setBitte(false), 400); // vuelve rápido
+      play();               // Suena justo cuando mordes
+      if (onClick) onClick();
+      setTimeout(() => setBitte(false), 400);
     }
   };
 

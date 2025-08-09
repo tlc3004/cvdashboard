@@ -1,4 +1,6 @@
 export default function DonutBitten({ bitten, onClick }) {
+  
+
   return (
     <div
       onClick={onClick}

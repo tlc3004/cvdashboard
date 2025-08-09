@@ -57,7 +57,9 @@ function App() {
               className="w-40 mt-6 object-contain translate-x-20"
             />
             {/* Botones dentro del panel lateral SIN funcionalidad */}
-            <DonutButton bitten={bitten} onClick={() => {}} />
+            <DonutButton bitten={bitten} onClick={() => {}}
+            className="absolute flex flex-items  bottom-1"
+            />
           
           </motion.aside>
         )}
@@ -67,7 +69,7 @@ function App() {
       <div className="mt-6">
         <DonutButton bitte={bitte}
           onClick={handleModalToggle}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          className="px-4 py-2 ml-5"
         >
         </DonutButton>
       </div>
