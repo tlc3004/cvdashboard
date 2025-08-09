@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <div
-      className="relative min-h-screen p-6 overflow-hidden"
+      className="relative min-h-screen p-6 overflow-hidden m-0 p-0"
       style={{
         backgroundImage: "url('/simpsoms.png')",
         backgroundSize: "cover",
