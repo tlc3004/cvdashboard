@@ -1,17 +1,25 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NelsonModal from "./NelsonModal";
 import DonutButton from "./DonutButton";
 
 export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
+  const [nelsonOpen, setNelsonOpen] = useState(false);
 
-  const [nelsonOpen, setNelsonOpen] = useState(true);
+  useEffect(() => {
+    let timer;
+    if (isOpen) {
+      timer = setTimeout(() => {
+        setNelsonOpen(true);
+      }, 1000); // 2 segundos después de abrir BurnsWindow
+    } else {
+      setNelsonOpen(false); // cerrar NelsonModal si BurnsWindow se cierra
+    }
 
+    return () => clearTimeout(timer); // limpiar el timer si BurnsWindow cambia
+  }, [isOpen]);
 
-    const toggleNelson = () => setNelsonOpen();
-    setTimeout(() =>{
-      setNelsonOpen();
-    }, 200) 
+  const closeNelson = () => setNelsonOpen(false);
 
   return (
     <AnimatePresence>
@@ -43,7 +51,6 @@ export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
             onClick={onClose}
             style={{
               marginTop: 20,
-              left: "50%",
               padding: "10px 20px",
               background: "red",
               color: "white",
@@ -55,12 +62,9 @@ export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
             Cerrar Burns
           </DonutButton>
           <DonutButton onClick={onOpenHomer} />
-          <div className="mt-6">
-                  <DonutButton onClick={toggleNelson} />
-                </div>
 
-                  <NelsonModal isOpen={nelsonOpen} />
-                
+          {/* NelsonModal aparece automáticamente después del delay */}
+          <NelsonModal isOpen={nelsonOpen} onClose={closeNelson} />
         </motion.div>
       )}
     </AnimatePresence>

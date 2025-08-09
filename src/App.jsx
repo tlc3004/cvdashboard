@@ -10,10 +10,9 @@ export default function App() {
   const [burnsOpen, setBurnsOpen] = useState(false);
   const [nelsonOpen, setNelsonOpen] = useState(false);
   const [homerOpen, setHomerOpen] = useState(false);
-
-
   const [bitten, setBitten] = useState(false);
 
+  // Controla abrir/cerrar SideBart con mordida
   const toggleSideBart = () => {
     if (!bitten) {
       setBitten(true);
@@ -22,17 +21,36 @@ export default function App() {
     }
   };
 
+  // Abre Burns y cierra SideBart si está abierto
+  const openBurns = () => {
+    setBurnsOpen(true);
+    setSideOpen(false);
+  };
 
-  const toggleBurns = () => setBurnsOpen(prev => !prev);
+  // Abre Nelson y cierra SideBart si está abierto
+  const openNelson = () => {
+    setNelsonOpen(true);
+    setSideOpen(false);
+  };
 
-  const toggleNelson = () => setNelsonOpen(prev => !prev);
+  // Abre Homer y cierra Burns y SideBart si están abiertos
+  const openHomer = () => {
+    setHomerOpen(true);
+    setBurnsOpen(false);
+    setSideOpen(false);
+  };
 
-
-  const toggleHomer = () => setHomerOpen(prev => !prev);
+  // Cierra todos modales
+  const closeAll = () => {
+    setBurnsOpen(false);
+    setNelsonOpen(false);
+    setHomerOpen(false);
+    setSideOpen(false);
+  };
 
   return (
     <div
-      className="relative min-h-screen p-6 overflow-hidden m-0 p-0"
+      className="relative min-h-screen p-6 overflow-hidden m-0"
       style={{
         backgroundImage: "url('/simpsoms.png')",
         backgroundSize: "cover",
@@ -40,29 +58,42 @@ export default function App() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      
+      {/* Botón para abrir SideBart */}
       <DonutButton bitten={bitten} onClick={toggleSideBart} />
 
-     
-      <SideBart isOpen={sideOpen} onClose={() => setSideOpen(false)} side="right" src="/bart.png" />
+      {/* SideBart, con botones para abrir modales */}
+      <SideBart
+        isOpen={sideOpen}
+        onClose={() => setSideOpen(false)}
+        side="right"
+        src="/bart.png"
+        onOpenBurns={openBurns}
+        onOpenNelson={openNelson}
+        onOpenHomer={openHomer}
+      />
 
-     
-      <div className="b-6">
-        <DonutButton onClick={toggleBurns} />
-      </div>
-
-     
-      <BurnsWindow isOpen={burnsOpen} onClose={() => setBurnsOpen(false)} onOpenHomer={toggleHomer} src="/homero.png" />
-
-    
+      {/* Botón para abrir BurnsWindow */}
       <div className="mt-6">
-        <DonutButton onClick={toggleNelson} />
+        <DonutButton onClick={openBurns} />
       </div>
 
-  
-      <NelsonModal isOpen={nelsonOpen} />
+      {/* BurnsWindow con botón para abrir HomerWindow */}
+      <BurnsWindow
+        isOpen={burnsOpen}
+        onClose={() => setBurnsOpen(false)}
+        onOpenHomer={openHomer}
+        src="/homero.png"
+      />
 
+      {/* Botón para abrir NelsonModal */}
+      <div className="mt-6">
+        <DonutButton onClick={openNelson} />
+      </div>
 
+      {/* NelsonModal */}
+      <NelsonModal isOpen={nelsonOpen} onClose={() => setNelsonOpen(false)} />
+
+      {/* HomerWindow */}
       <HomerWindow isOpen={homerOpen} onClose={() => setHomerOpen(false)} />
     </div>
   );
