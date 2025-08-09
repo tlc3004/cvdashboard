@@ -2,15 +2,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import DonutButton from "./components/DonutButton";
 import DonutBitten from "./components/DonutBitten";
-import HomerModal from "./components/HomerModal";
+import BurnsWindow from "./components/BurnsWindow";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false); // Panel lateral
-  const [bitten, setBitten] = useState(false); // Estado mordida (compartido)
-  const [modalOpen, setModalOpen] = useState(false); // Modal inferior
-  const [bitte, setBitte] = useState(false); // Modal inferior
+  const [isOpen, setIsOpen] = useState(false);
+  const [bitten, setBitten] = useState(false);
+  const [burnsOpen, setBurnsOpen] = useState(false);
+  const [bitte, setBitte] = useState(false);
 
-  // Handler para abrir/cerrar panel lateral
   const handlePanelToggle = () => {
     if (!bitten) {
       setBitten(true);
@@ -19,11 +18,10 @@ function App() {
     }
   };
 
-  // Handler para abrir/cerrar modal inferior
-  const handleModalToggle = () => {
-    if (!bitte ) {
-      setBitte(true); 
-      setModalOpen((prev) => !prev);
+  const handleBurnsToggle = () => {
+    if (!bitte) {
+      setBitte(true);
+      setBurnsOpen((prev) => !prev);
       setTimeout(() => setBitte(false), 500);
     }
   };
@@ -38,7 +36,7 @@ function App() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Botón para abrir/cerrar panel lateral */}
+      {/* Botón que abre panel lateral */}
       <DonutBitten bitten={bitten} onClick={handlePanelToggle} />
 
       {/* Panel lateral */}
@@ -56,30 +54,21 @@ function App() {
               alt="Bart mirando"
               className="w-40 mt-6 object-contain translate-x-20"
             />
-            {/* Botones dentro del panel lateral SIN funcionalidad */}
-            <DonutButton bitten={bitten} onClick={() => {}}
-            className="absolute flex flex-items  bottom-1"
-            />
-          
+            <DonutButton bitten={bitten} onClick={() => {}} />
           </motion.aside>
         )}
       </AnimatePresence>
 
-      {/* Botón para abrir/cerrar modal inferior */}
+      {/* Botón que abre modal full screen */}
       <div className="mt-6">
-        <DonutButton bitte={bitte}
-          onClick={handleModalToggle}
-          className="px-4 py-2 ml-5"
-        >
-        </DonutButton>
+        <DonutButton bitte={bitte} onClick={handleBurnsToggle} />
       </div>
 
-      {/* Modal inferior */}
-      <HomerModal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        
-        {/* Botón dentro del modal SIN funcionalidad */}
-        <DonutBitten bitte={bitte} onClick={() => {}} />
-      </HomerModal>
+      {/* Modal full screen */}
+      <BurnsWindow isOpen={burnsOpen} onClose={() => setBurnsOpen(false)}>
+        <h1 style={{ color: "black" }}>¡Hola, soy Burns!</h1>
+        <p>Este modal ocupa toda la pantalla.</p>
+      </BurnsWindow>
     </div>
   );
 }
