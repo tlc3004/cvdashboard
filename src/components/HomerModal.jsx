@@ -12,15 +12,10 @@ export default function HomerModal({ isOpen}) {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           style={{
             position: "fixed",
-            top: "80px",
-            left: "60%",
+            top: "100px",
             right: 0,
             width: "40%",
             height: "100%",
-            backgroundColor: "white",
-            boxShadow: "0 -2px 10px rgba(0,0,0,0.2)",
-            borderTopLeftRadius: "12px",
-            borderTopRightRadius: "12px",
             zIndex: 1000,
             display: "flex",
             flexDirection: "column",
@@ -32,11 +27,11 @@ export default function HomerModal({ isOpen}) {
 
           {/* Imagen “echada” encima */}
           <img
-            src="/omero.png"
+            src="/nelson.png"
             alt="Omero"
             style={{
               position: "relative",
-              top: "-410px", // se sale 60px arriba del modal
+              top: "-80px", // se sale 60px arriba del modal
               left: "0%",
               width: "100%",
               height: "auto",
