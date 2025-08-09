@@ -49,7 +49,7 @@ function App() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 1, exit: { duration: 2 } }}
-            className="fixed top-0 right-0 w-72 h-full bg-white shadow-xl z-50 p-4 flex flex-col items-center"
+            className="fixed top-0 right-0 w-72 h-full bg-white shadow-xl z-50 p-4 flex flex-col rounded-md items-center"
           >
             <img
               src="/bart.png"
