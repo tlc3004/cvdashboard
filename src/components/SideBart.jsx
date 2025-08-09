@@ -1,5 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import DonutBitten from "./DonutBitten";
+import BurnsWindow from "./BurnsWindow";
+import HomerWindow from "./HomerWindow";
+import App from "../App";
 
 export default function SideBart({ isOpen, onClose, side = "right", src = "/bart.png", bitten, onOpenBurns, onOpenHomer, onOpenNelson }) {
 
@@ -13,17 +16,17 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
 
   // Ahora cada botón llama su función correspondiente y cierra sidebar igual que antes
   const handleOpenBurns = () => {
-    if (onOpenBurns) onOpenBurns();
+   onOpenBurns();
     handleCloseClick();
   };
 
   const handleOpenHomer = () => {
-    if (onOpenHomer) onOpenHomer();
+  onOpenHomer();
     handleCloseClick();
   };
 
   const handleOpenNelson = () => {
-    if (onOpenNelson) onOpenNelson();
+    onOpenNelson();
     handleCloseClick();
   };
 
@@ -61,7 +64,8 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
               alignItems: "center",
             }}
           >
-            <DonutBitten bitten={bitten} onClick={handleCloseClick} />
+            {/* 1: Abre BurnsWindow */}
+            <DonutBitten bitten={bitten} onClick={handleOpenBurns} />
           </div>
           <div
             style={{
@@ -71,7 +75,8 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
               alignItems: "center",
             }}
           >
-            <DonutBitten bitten={bitten} onClick={handleCloseClick} />
+            {/* 2: Abre HomerWindow */}
+            <DonutBitten bitten={bitten} onClick={handleOpenHomer} />
           </div>
           <div
             style={{
@@ -81,16 +86,7 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
               alignItems: "center",
             }}
           >
-            <DonutBitten bitten={bitten} onClick={handleCloseClick} />
-          </div>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+            {/* 3: Solo cierra SideBart y regresa a App */}
             <DonutBitten bitten={bitten} onClick={handleCloseClick} />
           </div>
 
@@ -102,12 +98,12 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
 
           <div style={{ marginTop: 20, width: "100%" }}>
             {/* Aquí los botones con sus handlers sin mover posición ni estilo */}
-            <button
+            <DonutBitten
               onClick={handleOpenBurns}
               style={{ width: "100%", padding: 10, borderRadius: 8, border: "none" }}
             >
               Acción 1
-            </button>
+            </DonutBitten>
             <button
               onClick={handleOpenHomer}
               style={{ width: "100%", padding: 10, marginTop: 8, borderRadius: 8, border: "none" }}
