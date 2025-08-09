@@ -20,7 +20,7 @@ export default function NelsonModal({ isOpen}) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            paddingTop: "80px", // espacio para la imagen encima
+            paddingTop: "80px",
           }}
         >
     

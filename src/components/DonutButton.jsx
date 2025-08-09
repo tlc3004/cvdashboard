@@ -3,12 +3,12 @@ import useSound from "use-sound";
 
 export default function DonutButton({ onClick }) {
   const [bitte, setBitte] = useState(false);
-  const [play] = useSound("sounds/burpy-rulp.mp3");
+  const [play] = useSound("/sounds/burpy-rul.mp3");
 
   const handleClick = () => {
     if (!bitte) {
       setBitte(true);
-      play();               // Suena justo cuando mordes
+      play();              
       if (onClick) onClick();
       setTimeout(() => setBitte(false), 400);
     }

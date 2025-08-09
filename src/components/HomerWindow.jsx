@@ -1,52 +1,68 @@
-// components/HomerModal.jsx
 import { motion, AnimatePresence } from "framer-motion";
-import DonutButton from "./DonutButton";
 
 export default function HomerWindow({ isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          key="homer-modal"
-          initial={{ y: "100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "100%" }}
-          transition={{ duration: 0.45, ease: "easeInOut" }}
+          key="homer-window"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           style={{
             position: "fixed",
-            bottom: 0,
-            left: 0,
-            width: "40%",
+            top: 0,
+            left: 0,        
+            width: "100%",   
             height: "100%",
-            zIndex: 1100,
+            backgroundColor: "#fff",
+            zIndex: 9999,
             display: "flex",
-            flexDirection: "column",
+            justifyContent: "flex-end",  
             alignItems: "center",
-            paddingTop: 100,
-            background: "linear-gradient(to top, #ffd54f, #ffeb3b)",
-            boxShadow: "8px 0 30px rgba(0,0,0,0.25)",
+            paddingRight: 0, 
           }}
         >
+       
           <img
-            src="/homer.png"
+            src="/homero.png"
             alt="Homer"
             style={{
-              position: "absolute",
-              top: -80,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "120%",
-              height: "auto",
-              zIndex: 1110,
+              height: "100%",
+              objectFit: "contain",
+              display: "block",
             }}
           />
+          
+          <div
+            style={{
+              position: "absolute",
+              top: 20,
+              left: 20,
+              color: "black",
+              Width: "30%",
+            }}
+          >
+            <button
+  onClick={onClose}
+  style={{
+    top: 0,
+    width: 400,
+    height: 600,
+    left: "10px",
+    backgroundImage: "url('/duff.png')",
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    border: "none",
+    borderRadius: 5,
+    cursor: "pointer",
+    textIndent: "-9999px" 
+  }}
+>
+  Cerrar Homer
+</button>
 
-          <div style={{ padding: 20, width: "100%", textAlign: "center" }}>
-            <h3>Homer</h3>
-            <p>Contenido propio de Homer.</p>
-            <div style={{ marginTop: 12 }}>
-              <DonutButton onClick={onClose} />
-            </div>
           </div>
         </motion.div>
       )}

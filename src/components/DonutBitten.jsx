@@ -1,17 +1,38 @@
-export default function DonutBitten({ bitten, onClick }) {
-  
+import { useState } from "react";
+import useSound from "use-sound";
+
+export default function DonutButton({ onClick }) {
+  const [bitten, setBitten] = useState(false);
+  const [play] = useSound("/sounds/burpy-rul.mp3");
+
+  const handleClick = () => {
+    if (!bitten) {
+      setBitten(true);
+      play();               
+      if (onClick) onClick();
+      setTimeout(() => setBitten(false), 400);
+    }
+  };
 
   return (
     <div
-      onClick={onClick}
-      style={{ width: 100, height: 100, cursor: "pointer", userSelect: "none" }}
+      onClick={handleClick}
+      className="cursor-pointer select-none"
+      style={{ width: 100, height: 100 }}
     >
-      <img
-        src={bitten ? "/dona2.png" : "/dona1.png"}
-        alt={bitten ? "Donut mordida" : "Donut normal"}
-        style={{ width: "100%", height: "100%", display: "block" }}
-        draggable={false}
-      />
+      {bitten ? (
+        <img
+          src="/dona2.png"
+          alt="Donut mordida"
+          style={{ width: "100%", height: "100%" }}
+        />
+      ) : (
+        <img
+          src="/dona1.png"
+          alt="Donut normal"
+          style={{ width: "100%", height: "100%" }}
+        />
+      )}
     </div>
   );
 }
