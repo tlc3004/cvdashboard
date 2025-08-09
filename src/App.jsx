@@ -1,34 +1,17 @@
+// App.jsx
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import DonutButton from "./components/DonutButton";
-import DonutBitten from "./components/DonutBitten";
-import BurnsWindow from "./components/BurnsWindow";
+import DonutBitten from "./components/DonutBitten"
+import BurnsWindow from "./components/BurnsWindow"
+import HomerWindow from "./components/HomerWindow";
 
-function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [bitten, setBitten] = useState(false);
+export default function App() {
   const [burnsOpen, setBurnsOpen] = useState(false);
-  const [bitte, setBitte] = useState(false);
-
-  const handlePanelToggle = () => {
-    if (!bitten) {
-      setBitten(true);
-      setIsOpen((prev) => !prev);
-      setTimeout(() => setBitten(false), 500);
-    }
-  };
-
-  const handleBurnsToggle = () => {
-    if (!bitte) {
-      setBitte(true);
-      setBurnsOpen((prev) => !prev);
-      setTimeout(() => setBitte(false), 500);
-    }
-  };
+  const [homerOpen, setHomerOpen] = useState(false);
 
   return (
     <div
-      className="relative min-h-screen p-6 overflow-hidden"
+      className="relative min-h-screen p-6"
       style={{
         backgroundImage: "url('/simpsoms.png')",
         backgroundSize: "cover",
@@ -36,41 +19,21 @@ function App() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Botón que abre panel lateral */}
-      <DonutBitten bitten={bitten} onClick={handlePanelToggle} />
+      <h1 style={{ color: "white" }}>App (Main)</h1>
 
-      {/* Panel lateral */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.aside
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 1, exit: { duration: 2 } }}
-            className="fixed top-0 right-0 w-72 h-full bg-white shadow-xl z-50 p-4 flex flex-col rounded-md items-center"
-          >
-            <img
-              src="/bart.png"
-              alt="Bart mirando"
-              className="w-40 mt-6 object-contain translate-x-20"
-            />
-            <DonutButton bitten={bitten} onClick={() => {}} />
-          </motion.aside>
-        )}
-      </AnimatePresence>
+      <div style={{ display: "flex", gap: 12, alignItems: "center", marginTop: 20 }}>
+        {/* DonutBitten abre BurnsWindow */}
+        <DonutBitten bitten={false} onClick={() => setBurnsOpen(true)} />
 
-      {/* Botón que abre modal full screen */}
-      <div className="mt-6">
-        <DonutButton bitte={bitte} onClick={handleBurnsToggle} />
+        {/* DonutButton abre HomerModal (ejemplo) */}
+        <DonutButton onClick={() => setHomerOpen(true)} />
       </div>
 
-      {/* Modal full screen */}
-      <BurnsWindow isOpen={burnsOpen} onClose={() => setBurnsOpen(false)}>
-        <h1 style={{ color: "black" }}>¡Hola, soy Burns!</h1>
-        <p>Este modal ocupa toda la pantalla.</p>
-      </BurnsWindow>
+      {/* BurnsWindow: App solo decide cuándo montarla */}
+      <BurnsWindow isOpen={burnsOpen} onClose={() => setBurnsOpen(false)} />
+
+      {/* HomerModal: App decide si mostrarlo (puedes abrirlo también desde BurnsWindow) */}
+      <HomerWindow isOpen={homerOpen} onClose={() => setHomerOpen(false)} />
     </div>
   );
 }
-
-export default App;

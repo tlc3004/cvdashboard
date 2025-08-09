@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, color } from "framer-motion";
-import DonutButton from "./DonutButton";
 
-export default function HomerModal({ isOpen}) {
+
+export default function NelsonModal({ isOpen}) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -25,13 +25,12 @@ export default function HomerModal({ isOpen}) {
         >
     
 
-          {/* Imagen “echada” encima */}
           <img
             src="/nelson.png"
-            alt="Omero"
+            alt="nelson"
             style={{
               position: "relative",
-              top: "-80px", // se sale 60px arriba del modal
+              top: "-80px", 
               left: "0%",
               width: "100%",
               height: "auto",
@@ -49,9 +48,8 @@ export default function HomerModal({ isOpen}) {
               color:"#000"
             }}
           >
-            tumare
           </div>
-          {/* Contenido del modal */}
+      
         </motion.div>
       )}
     </AnimatePresence>
