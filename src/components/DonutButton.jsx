@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-export default function DonutButton() {
-  const [bitten, setBitten] = useState(false);
+export default function DonutButton({ onClick }) {
+  const [bitte, setBitte] = useState(false);
 
   const handleClick = () => {
-    if (!bitten) {
-      setBitten(true);
-      setTimeout(() => setBitten(false), 700); // vuelve rápido
+    if (!bitte) {
+      setBitte(true);
+      if (onClick) onClick();    // <-- Dispara el onClick externo
+      setTimeout(() => setBitte(false), 400); // vuelve rápido
     }
   };
 
@@ -14,17 +15,17 @@ export default function DonutButton() {
     <div
       onClick={handleClick}
       className="cursor-pointer select-none"
-      style={{ width: 150, height: 150 }}
+      style={{ width: 100, height: 100 }}
     >
-      {bitten ? (
+      {bitte ? (
         <img
-          src="/donuts.png"
+          src="/dona2.png"
           alt="Donut mordida"
           style={{ width: "100%", height: "100%" }}
         />
       ) : (
         <img
-          src="/donita.png"
+          src="/dona1.png"
           alt="Donut normal"
           style={{ width: "100%", height: "100%" }}
         />

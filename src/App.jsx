@@ -1,58 +1,83 @@
-// src/App.jsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import DonutButton from './components/DonutButton'
+import DonutButton from "./components/DonutButton";
 import DonutBitten from "./components/DonutBitten";
-
+import HomerModal from "./components/HomerModal";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [bitten, setBitten] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Panel lateral
+  const [bitten, setBitten] = useState(false); // Estado mordida (compartido)
+  const [modalOpen, setModalOpen] = useState(false); // Modal inferior
+  const [bitte, setBitte] = useState(false); // Modal inferior
 
-  const togglePanel = () => setIsOpen(!isOpen);
-
-  const handleClick = () => {
+  // Handler para abrir/cerrar panel lateral
+  const handlePanelToggle = () => {
     if (!bitten) {
       setBitten(true);
+      setIsOpen((prev) => !prev);
       setTimeout(() => setBitten(false), 500);
     }
   };
 
-  return (
-    <div className="relative min-h-screen p-6 overflow-hidden">
-      <button
-        onClick={() => togglePanel(isOpen) }
-        className="fixed top-6 right-[300px] w-20 h-20 rounded-full bg-no-repeat bg-cover bg-center shadow-lg hover:scale-105 transition-transform duration-300"
-        style={{backgroundImage:"url('/donita.png')"}}
-      >
-       
-      </button>
+  // Handler para abrir/cerrar modal inferior
+  const handleModalToggle = () => {
+    if (!bitte ) {
+      setBitte(true); 
+      setModalOpen((prev) => !prev);
+      setTimeout(() => setBitte(false), 500);
+    }
+  };
 
-      {/* PANEL SLIDER CON BART */}
+  return (
+    <div
+      className="relative min-h-screen p-6 overflow-hidden"
+      style={{
+        backgroundImage: "url('/simpsoms.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Botón para abrir/cerrar panel lateral */}
+      <DonutBitten bitten={bitten} onClick={handlePanelToggle} />
+
+      {/* Panel lateral */}
       <AnimatePresence>
         {isOpen && (
           <motion.aside
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ duration: 1 }}
-            className="fixed top-0 right-[-3%] w-72 h-full bg-white shadow-xl z-50 p-4 flex flex-col items-center"
+            transition={{ duration: 1, exit: { duration: 2 } }}
+            className="fixed top-0 right-0 w-72 h-full bg-white shadow-xl z-50 p-4 flex flex-col items-center"
           >
             <img
               src="/bart.png"
               alt="Bart mirando"
-              className="w-40 mt-6 object-contain translate-x-6"
+              className="w-40 mt-6 object-contain translate-x-20"
             />
+            {/* Botones dentro del panel lateral SIN funcionalidad */}
+            <DonutButton bitten={bitten} onClick={() => {}} />
           
           </motion.aside>
         )}
-        <div className="flex gap-4 p-6">
-      <DonutButton bitten={bitten} onClick={handleClick} />
-      <DonutBitten bitten={bitten} onClick={handleClick} />
-    </div>
-
-      
       </AnimatePresence>
+
+      {/* Botón para abrir/cerrar modal inferior */}
+      <div className="mt-6">
+        <DonutButton bitte={bitte}
+          onClick={handleModalToggle}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        >
+        </DonutButton>
+      </div>
+
+      {/* Modal inferior */}
+      <HomerModal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        
+        {/* Botón dentro del modal SIN funcionalidad */}
+        <DonutBitten bitte={bitte} onClick={() => {}} />
+      </HomerModal>
     </div>
   );
 }
