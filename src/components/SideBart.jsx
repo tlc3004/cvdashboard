@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import DonutBurpy from "./DonutBurpy";
+import DonutButton from "./DonutButton";
 import HomerWindow from "./HomerWindow";
 import BurnsWindow from "./BurnsWindow";
 import BartWindow from "./BartWindow";
@@ -64,33 +64,33 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
 
           {/* Botones principales */}
           <div style={{ marginTop: 10, width: "10%", display: "flex", flexDirection: "column", gap: 2, zIndex: 2000 }}>
-            <DonutBurpy
+            <DonutButton
               onClick={handleOpenBurns}
               style={{ width: "20%", padding: 10, borderRadius: 8, border: "none" }}
             >
               Burns
-            </DonutBurpy>
+            </DonutButton>
             <BurnsWindow/>
-            <DonutBurpy
+            <DonutButton
               onClick={handleOpenHomer}
               style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
             >
               Homer
-            </DonutBurpy>
+            </DonutButton>
             <HomerWindow/>
-            <DonutBurpy
+            <DonutButton
               onClick={handleOpenBart}
               style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
             >
               bart
-            </DonutBurpy>
+            </DonutButton>
             <BartWindow/>
-            <DonutBurpy
+            <DonutButton
               onClick={handleCloseClick}
               style={{ width: "50%",  border: "none" }}
             >
               Regresar
-            </DonutBurpy>
+            </DonutButton>
           </div>
 
           <img

@@ -1,8 +1,25 @@
 import { motion, AnimatePresence } from "framer-motion";
-
+import { useEffect, useState } from "react";
+import ModalHomer from "./ModalHomer";
 import DonutButton from "./DonutButton";
 
 export default function BartWindow({ isOpen, onClose }) {
+    const [homerOpen, setHomerOpen]=useState(false)
+
+      useEffect(() => {
+    let timer;
+    if (isOpen) {
+      timer = setTimeout(() => {
+        setHomerOpen(true);
+      }, 100); // 2 segundos después de abrir BurnsWindow
+    } else {
+      setHomerOpen(false); // cerrar NelsonModal si BurnsWindow se cierra
+    }
+
+    return () => clearTimeout(timer); // limpiar el timer si BurnsWindow cambia
+  }, [isOpen]);
+
+  const homerClose = () => setHomerOpen(false);
 
   return (
     <AnimatePresence>
@@ -30,22 +47,12 @@ export default function BartWindow({ isOpen, onClose }) {
           }}
         >
           
-          <DonutButton
+          <DonutButton 
             onClick={onClose}
-            style={{
-              position: "relative",
-              marginBottom: "30px",
-              padding: "10px 20px",
-              background: "red",
-              color: "white",
-              border: "none",
-              borderRadius: 5,
-              cursor: "pointer",
-            }}
           >
     
           </DonutButton>
-         
+          <ModalHomer isOpen={homerOpen} onClose={homerClose} />
         </motion.div>
       )}
     </AnimatePresence>

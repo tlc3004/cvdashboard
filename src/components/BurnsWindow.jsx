@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import NelsonModal from "./NelsonModal";
 import DonutButton from "./DonutButton";
 
-export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
+export default function BurnsWindow({ isOpen, onClose }) {
   const [nelsonOpen, setNelsonOpen] = useState(false);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
     if (isOpen) {
       timer = setTimeout(() => {
         setNelsonOpen(true);
-      }, 2000); // 2 segundos después de abrir BurnsWindow
+      }, 1000); // 2 segundos después de abrir BurnsWindow
     } else {
       setNelsonOpen(false); // cerrar NelsonModal si BurnsWindow se cierra
     }
@@ -50,8 +50,8 @@ export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
           <DonutButton
             onClick={onClose}
             style={{
-              position: "relative",
-              marginBottom: "30px",
+              position: "fixed",
+              marginBottom: "300px",
               padding: "10px 20px",
               background: "red",
               color: "white",

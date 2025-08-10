@@ -18,7 +18,7 @@ export default function App() {
     if (!bitten) {
       setBitten(true);
       setSideOpen(prev => !prev);
-      setTimeout(() => setBitten(false), 2000);
+      setTimeout(() => setBitten(false), 100);
     }
   };
 
@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <div
-      className="relative min-h-screen p-0 overflow-hidden m-0 rounded"
+      className="relative min-h-screen  overflow-hidden mb-0"
       style={{
         backgroundImage: "url('/simpsoms.png')",
         backgroundSize: "cover",

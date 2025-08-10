@@ -41,10 +41,10 @@ const [play] = useSound("/sounds/burpy-rulp.mp3");
           <div
             style={{
               position: "absolute",
-              top: 20,
+              top: 50,
               left: 20,
               color: "black",
-              Width: "30%",
+              Width: "50%",
             }}
           >
             <button
