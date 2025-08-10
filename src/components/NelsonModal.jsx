@@ -9,7 +9,7 @@ export default function NelsonModal({ isOpen}) {
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
           exit={{ y: "100%" }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
           style={{
             position: "fixed",
             top: "100px",
