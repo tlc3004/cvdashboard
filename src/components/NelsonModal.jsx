@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-
-export default function NelsonModal({ isOpen}) {
+export default function NelsonModal({ isOpen }) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -12,44 +11,30 @@ export default function NelsonModal({ isOpen}) {
           transition={{ duration: 0.4, ease: "easeInOut" }}
           style={{
             position: "fixed",
-            top: "100px",
-            right: 0,
+            top: 100,
+            left: 850,
             width: "40%",
             height: "100%",
             zIndex: 1000,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            paddingTop: "80px",
+            paddingTop: 80,
+            color: "#000",
+            textAlign: "center",
           }}
         >
-    
-
           <img
             src="/nelson.png"
             alt="nelson"
             style={{
               position: "relative",
-              top: "-80px", 
-              left: "0%",
-              width: "100%",
+              top: 60,
+              width: "70%",
               height: "auto",
-              
               zIndex: 100,
             }}
           />
-
-          <div
-            style={{
-              width: "100%",
-              padding: 20,
-              flexGrow: 1,
-              textAlign:"center",
-              color:"#000"
-            }}
-          >
-          </div>
-      
         </motion.div>
       )}
     </AnimatePresence>

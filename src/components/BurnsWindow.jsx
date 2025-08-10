@@ -9,14 +9,11 @@ export default function BurnsWindow({ isOpen, onClose }) {
   useEffect(() => {
     let timer;
     if (isOpen) {
-      timer = setTimeout(() => {
-        setNelsonOpen(true);
-      }, 1000); // 2 segundos después de abrir BurnsWindow
+      timer = setTimeout(() => setNelsonOpen(true), 2000);
     } else {
-      setNelsonOpen(false); // cerrar NelsonModal si BurnsWindow se cierra
+      setNelsonOpen(false);
     }
-
-    return () => clearTimeout(timer); // limpiar el timer si BurnsWindow cambia
+    return () => clearTimeout(timer);
   }, [isOpen]);
 
   const closeNelson = () => setNelsonOpen(false);
@@ -46,25 +43,21 @@ export default function BurnsWindow({ isOpen, onClose }) {
             zIndex: 9999,
           }}
         >
-          
-          <DonutButton
-            onClick={onClose}
+          {/* DonutButton fijo en esquina superior izquierda */}
+          <div
             style={{
               position: "fixed",
-              marginBottom: "300px",
-              padding: "10px 20px",
-              background: "red",
-              color: "white",
-              border: "none",
-              borderRadius: 5,
+              top: 20,
+              left: 20,
+              width: 100,
+              height: 100,
+              zIndex: 10000,
               cursor: "pointer",
             }}
           >
-            Cerrar Burns
-          </DonutButton>
-          
+            <DonutButton onClick={onClose} />
+          </div>
 
-          {/* NelsonModal aparece automáticamente después del delay */}
           <NelsonModal isOpen={nelsonOpen} onClose={closeNelson} />
         </motion.div>
       )}

@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-
-export default function ModalHomer({ isOpen}) {
+export default function ModalHomer({ isOpen }) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -12,7 +11,7 @@ export default function ModalHomer({ isOpen}) {
           transition={{ duration: 0.4, ease: "easeInOut" }}
           style={{
             position: "fixed",
-            top: "100px",
+            top: 100,
             right: 0,
             width: "40%",
             height: "100%",
@@ -20,34 +19,22 @@ export default function ModalHomer({ isOpen}) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            paddingTop: "80px",
+            paddingTop: 80,
+            color: "#000",
+            textAlign: "center",
           }}
         >
-    
-
           <img
             src="/omero.png"
             alt="omero"
             style={{
               position: "relative",
-              top: "-50px", 
+              top: -50,
               left: "10%",
-              width: "80%",              
+              width: "80%",
               zIndex: 100,
             }}
           />
-
-          <div
-            style={{
-              width: "100%",
-              padding: 20,
-              flexGrow: 1,
-              textAlign:"center",
-              color:"#000"
-            }}
-          >
-          </div>
-      
         </motion.div>
       )}
     </AnimatePresence>

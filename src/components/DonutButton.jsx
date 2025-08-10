@@ -8,9 +8,9 @@ export default function DonutButton({ onClick }) {
   const handleClick = () => {
     if (!bitte) {
       setBitte(true);
-      play();              
+      play();
       if (onClick) onClick();
-      setTimeout(() => setBitte(false), 600);
+      setTimeout(() => setBitte(false), 1000);
     }
   };
 
@@ -20,19 +20,11 @@ export default function DonutButton({ onClick }) {
       className="cursor-pointer select-none"
       style={{ width: 100, height: 100 }}
     >
-      {bitte ? (
-        <img
-          src="/dona2.png"
-          alt="Donut mordida"
-          style={{ width: "100%", height: "100%" }}
-        />
-      ) : (
-        <img
-          src="/dona1.png"
-          alt="Donut normal"
-          style={{ width: "100%", height: "100%" }}
-        />
-      )}
+      <img
+        src={bitte ? "/dona2.png" : "/dona1.png"}
+        alt={bitte ? "Donut mordida" : "Donut normal"}
+        style={{ width: "100%", height: "100%" }}
+      />
     </div>
   );
 }

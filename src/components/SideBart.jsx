@@ -1,9 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import DonutButton from "./DonutButton";
-import HomerWindow from "./HomerWindow";
-import BurnsWindow from "./BurnsWindow";
-import BartWindow from "./BartWindow";
-
 
 export default function SideBart({ isOpen, onClose, side = "right", src = "/bart.png", onOpenBurns, onOpenHomer, onOpenBart }) {
 
@@ -15,23 +11,10 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
     if (onClose) onClose();
   };
 
-  // Ahora cada botón llama su función correspondiente y cierra sidebar igual que antes
-  const handleOpenBurns = () => {
-   onOpenBurns();
-  };
-
-  const handleOpenHomer = () => {
-  onOpenHomer();
-  
-  };
-
-  const handleOpenBart = () => {
-  onOpenBart();
-  
-  };
-
-    
-  
+  // Llaman funciones externas, sin más rollos
+  const handleOpenBurns = () => onOpenBurns();
+  const handleOpenHomer = () => onOpenHomer();
+  const handleOpenBart = () => onOpenBart();
 
   return (
     <AnimatePresence>
@@ -55,14 +38,12 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
             ...sideStyle,
           }}
         >
-          {/* Solo imagen de Bart */}
           <img
             src={src}
             alt="Bart"
             style={{ position: "absolute", width: "70%", marginTop: 0, marginRight: "-60%" }}
           />
 
-          {/* Botones principales */}
           <div style={{ marginTop: 10, width: "10%", display: "flex", flexDirection: "column", gap: 2, zIndex: 2000 }}>
             <DonutButton
               onClick={handleOpenBurns}
@@ -70,24 +51,24 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
             >
               Burns
             </DonutButton>
-            <BurnsWindow/>
+
             <DonutButton
               onClick={handleOpenHomer}
               style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
             >
               Homer
             </DonutButton>
-            <HomerWindow/>
+
             <DonutButton
               onClick={handleOpenBart}
               style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
             >
               bart
             </DonutButton>
-            <BartWindow/>
+
             <DonutButton
               onClick={handleCloseClick}
-              style={{ width: "50%",  border: "none" }}
+              style={{ width: "50%", border: "none" }}
             >
               Regresar
             </DonutButton>
@@ -98,9 +79,6 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
             alt="Bart"
             style={{ position: "absolute", width: "60%", marginTop: 0, marginRight: "-60%" }}
           />
-
-          
-        
         </motion.aside>
       )}
     </AnimatePresence>

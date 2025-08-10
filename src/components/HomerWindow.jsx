@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import useSound from "use-sound";
 import DonutButton from "./DonutButton";
 
-export default function HomerWindow({ isOpen, onClose,  }) {
-const [play] = useSound("/sounds/burpy-rulp.mp3");
+export default function HomerWindow({ isOpen, onClose }) {
+  const [play] = useSound("/sounds/burpy-rulp.mp3");
 
   return (
     <AnimatePresence>
@@ -16,18 +16,17 @@ const [play] = useSound("/sounds/burpy-rulp.mp3");
           style={{
             position: "fixed",
             top: 0,
-            left: 0,        
-            width: "100%",   
+            left: 0,
+            width: "100%",
             height: "100%",
             backgroundColor: "#fff",
             zIndex: 9999,
             display: "flex",
-            justifyContent: "flex-end",  
+            justifyContent: "flex-end",
             alignItems: "center",
-            paddingRight: 0, 
+            paddingRight: 0,
           }}
         >
-       
           <img
             src="/homero.png"
             alt="Homer"
@@ -37,39 +36,49 @@ const [play] = useSound("/sounds/burpy-rulp.mp3");
               display: "block",
             }}
           />
-          
+
           <div
             style={{
               position: "absolute",
               top: 50,
               left: 20,
               color: "black",
-              Width: "50%",
+              width: "50%",
             }}
           >
             <button
-  onClick={play}
-  style={{
-    top: 0,
-    width: 400,
-    height: 600,
-    left: "10px",
-    backgroundImage: "url('/duff.png')",
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    border: "none",
-    borderRadius: 5,
-    cursor: "pointer",
-    textIndent: "-9999px" 
-    
-  }}
->
-  Cerrar Homer
-</button>
+              onClick={play}
+              style={{
+                width: 400,
+                height: 600,
+                backgroundImage: "url('/duff.png')",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                border: "none",
+                borderRadius: 5,
+                cursor: "pointer",
+                textIndent: "-9999px",
+              }}
+            >
+              Play Sound
+            </button>
           </div>
-<DonutButton 
-  onClick={onClose}/>
+
+          {/* Aquí el DonutButton fijo en esquina superior izquierda */}
+          <div
+            style={{
+              position: "fixed",
+              top: 20,
+              left: 20,
+              width: 100,
+              height: 100,
+              zIndex: 10000,
+              cursor: "pointer",
+            }}
+          >
+            <DonutButton onClick={onClose} />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -4,19 +4,16 @@ import ModalHomer from "./ModalHomer";
 import DonutButton from "./DonutButton";
 
 export default function BartWindow({ isOpen, onClose }) {
-    const [homerOpen, setHomerOpen]=useState(false)
+  const [homerOpen, setHomerOpen] = useState(false);
 
-      useEffect(() => {
+  useEffect(() => {
     let timer;
     if (isOpen) {
-      timer = setTimeout(() => {
-        setHomerOpen(true);
-      }, 100); // 2 segundos después de abrir BurnsWindow
+      timer = setTimeout(() => setHomerOpen(true), 500);
     } else {
-      setHomerOpen(false); // cerrar NelsonModal si BurnsWindow se cierra
+      setHomerOpen(false);
     }
-
-    return () => clearTimeout(timer); // limpiar el timer si BurnsWindow cambia
+    return () => clearTimeout(timer);
   }, [isOpen]);
 
   const homerClose = () => setHomerOpen(false);
@@ -46,12 +43,25 @@ export default function BartWindow({ isOpen, onClose }) {
             zIndex: 9999,
           }}
         >
-          
-          <DonutButton 
-            onClick={onClose}
+          {/* DonutButton fijo arriba a la izquierda */}
+          <div
+            style={{
+              position: "fixed",
+              top: 20,
+              left: 20,
+              width: 100,
+              height: 100,
+              zIndex: 10000,
+              cursor: "pointer",
+            }}
           >
-    
-          </DonutButton>
+            <DonutButton onClick={onClose} />
+          </div>
+            <div>
+                
+            </div>
+
+
           <ModalHomer isOpen={homerOpen} onClose={homerClose} />
         </motion.div>
       )}
