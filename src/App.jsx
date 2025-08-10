@@ -39,39 +39,39 @@ export default function App() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-    >
       
+      >
       <DonutButton bitten={bitten} onClick={toggleSideBart} />
 
-     
+      
       <SideBart
         isOpen={sideOpen}
         onClose={() => setSideOpen(false)}
         side="right"
-        src="/bart.png"
+        src="/bartred.png"
         bitten={bitten}
         onOpenBurns={() => setBurnsOpen(true)}
         onOpenHomer={() => setHomerOpen(true)}
         onOpenNelson={() => setNelsonOpen(true)}
-      />
 
+        />
      
       <div className="b-6">
         <DonutButton onClick={toggleBurns} />
       </div>
 
-     
-      <BurnsWindow isOpen={burnsOpen} onClose={() => setBurnsOpen(false)} onOpenHomer={toggleHomer} src="/homero.png" />
+
+<BurnsWindow isOpen={burnsOpen} onClose={() => setBurnsOpen(false)} onOpenHomer={toggleHomer} src="/homero.png" />
 
     
       <div className="mt-6">
-        <DonutButton onClick={toggleNelson} />
+        <DonutButton onClick={()=>setNelsonOpen(nelsonOpen)} />
       </div>
 
   
-      <NelsonModal isOpen={nelsonOpen} />
+      
 
-
+      
       <HomerWindow isOpen={homerOpen} onClose={() => setHomerOpen(false)} />
     </div>
   );

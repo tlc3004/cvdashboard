@@ -1,10 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import DonutBitten from "./DonutBitten";
-import BurnsWindow from "./BurnsWindow";
-import HomerWindow from "./HomerWindow";
-import App from "../App";
 
-export default function SideBart({ isOpen, onClose, side = "right", src = "/bart.png", bitten, onOpenBurns, onOpenHomer, onOpenNelson }) {
+
+export default function SideBart({ isOpen, onClose, side = "right", src = "/bartred.png", onOpenBurns, onOpenHomer, onOpenNelson }) {
 
   const initial = side === "left" ? { x: "-100%" } : { x: "100%" };
   const exit = side === "left" ? { x: "-100%" } : { x: "100%" };
@@ -44,11 +42,7 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
             height: "100vh",
             width: 500,
             zIndex: 1050,
-            background: "white",
-            boxShadow:
-              side === "left"
-                ? "8px 0 30px rgba(0,0,0,0.25)"
-                : "-8px 0 30px rgba(0,0,0,0.25)",
+            background: "transparent",
             padding: 18,
             display: "flex",
             flexDirection: "column",
@@ -56,66 +50,58 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
             ...sideStyle,
           }}
         >
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            {/* 1: Abre BurnsWindow */}
-            <DonutBitten bitten={bitten} onClick={handleOpenBurns} />
-          </div>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            {/* 2: Abre HomerWindow */}
-            <DonutBitten bitten={bitten} onClick={handleOpenHomer} />
-          </div>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            {/* 3: Solo cierra SideBart y regresa a App */}
-            <DonutBitten bitten={bitten} onClick={handleCloseClick} />
+          {/* Solo imagen de Bart */}
+          <img
+            src={src}
+            alt="Bart"
+            style={{ position: "absolute", width: "60%", marginTop: 0, marginRight: "-60%" }}
+          />
+
+          {/* Botones principales */}
+          <div style={{ marginTop: 10, width: "40%", display: "flex", flexDirection: "column", gap: 2 }}>
+            <DonutBitten
+              onClick={handleOpenBurns}
+              style={{ width: "100%", padding: 10, borderRadius: 8, border: "none" }}
+            >
+              Burns
+            </DonutBitten>
+            <DonutBitten
+              onClick={handleOpenHomer}
+              style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
+            >
+              Homer
+            </DonutBitten>
+            <DonutBitten
+              onClick={handleCloseClick}
+              style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
+            >
+              Regresar
+            </DonutBitten>
           </div>
 
           <img
             src={src}
             alt="Bart"
-            style={{ position: "absolute", width: "70%", marginTop: 20, marginRight: "-50%" }}
+            style={{ position: "absolute", width: "60%", marginTop: 0, marginRight: "-60%" }}
           />
 
-          <div style={{ marginTop: 20, width: "100%" }}>
+          <div style={{ marginTop: 50, width: "50%" }}>
             {/* Aquí los botones con sus handlers sin mover posición ni estilo */}
             <DonutBitten
               onClick={handleOpenBurns}
-              style={{ width: "100%", padding: 10, borderRadius: 8, border: "none" }}
+              style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
             >
-              Acción 1
             </DonutBitten>
-            <button
+            <DonutBitten
               onClick={handleOpenHomer}
-              style={{ width: "100%", padding: 10, marginTop: 8, borderRadius: 8, border: "none" }}
+              style={{ width: "50%", padding: 10, marginTop: 8, borderRadius: 8, border: "none" }}
             >
-              Acción 2
-            </button>
-            <button
+            </DonutBitten>
+            <DonutBitten
               onClick={handleOpenNelson}
-              style={{ width: "100%", padding: 10, marginTop: 8, borderRadius: 8, border: "none" }}
+              style={{ width: "50%", padding: 10, marginTop: 8, borderRadius: 8, border: "none" }}
             >
-              Acción 3
-            </button>
+            </DonutBitten>
           </div>
         </motion.aside>
       )}

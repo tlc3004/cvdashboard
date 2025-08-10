@@ -1,6 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
+import useSound from "use-sound";
+import DonutButton from "./DonutButton";
 
-export default function HomerWindow({ isOpen, onClose }) {
+export default function HomerWindow({ isOpen, onClose,  }) {
+const [play] = useSound("/sounds/burpy-rulp.mp3");
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -44,7 +48,7 @@ export default function HomerWindow({ isOpen, onClose }) {
             }}
           >
             <button
-  onClick={onClose}
+  onClick={play}
   style={{
     top: 0,
     width: 400,
@@ -58,12 +62,14 @@ export default function HomerWindow({ isOpen, onClose }) {
     borderRadius: 5,
     cursor: "pointer",
     textIndent: "-9999px" 
+    
   }}
 >
   Cerrar Homer
 </button>
-
           </div>
+<DonutButton 
+  onClick={onClose}/>
         </motion.div>
       )}
     </AnimatePresence>
