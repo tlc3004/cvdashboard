@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilos globales personalizados */
+
+.dashboard-container {
+  @apply p-4;
+}
+
+@media (min-width: 768px) {
+  .dashboard-container {
+    @apply p-8 max-w-screen-md mx-auto;
+  }
+}
+
+/* Si quieres puedes agregar más clases con @apply y media queries */

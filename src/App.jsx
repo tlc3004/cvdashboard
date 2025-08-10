@@ -2,14 +2,14 @@ import { useState } from "react";
 import DonutButton from "./components/DonutButton";
 import BurnsWindow from "./components/BurnsWindow";
 import HomerWindow from "./components/HomerWindow";
-import NelsonModal from "./components/NelsonModal";
+import BartWindow from "./components/BartWindow";
 import SideBart from "./components/SideBart";
 
 export default function App() {
   const [sideOpen, setSideOpen] = useState(false);
   const [burnsOpen, setBurnsOpen] = useState(false);
-  const [nelsonOpen, setNelsonOpen] = useState(false);
   const [homerOpen, setHomerOpen] = useState(false);
+  const [bartOpen, setBartOpen] = useState(false)
 
 
   const [bitten, setBitten] = useState(false);
@@ -18,21 +18,21 @@ export default function App() {
     if (!bitten) {
       setBitten(true);
       setSideOpen(prev => !prev);
-      setTimeout(() => setBitten(false), 500);
+      setTimeout(() => setBitten(false), 2000);
     }
   };
 
 
   const toggleBurns = () => setBurnsOpen(prev => !prev);
+  const toggleBart = () => setBartOpen(prev => !prev);
 
-  const toggleNelson = () => setNelsonOpen(prev => !prev);
 
 
   const toggleHomer = () => setHomerOpen(prev => !prev);
 
   return (
     <div
-      className="relative min-h-screen p-6 overflow-hidden m-0"
+      className="relative min-h-screen p-0 overflow-hidden m-0 rounded"
       style={{
         backgroundImage: "url('/simpsoms.png')",
         backgroundSize: "cover",
@@ -48,31 +48,27 @@ export default function App() {
         isOpen={sideOpen}
         onClose={() => setSideOpen(false)}
         side="right"
-        src="/bartred.png"
+        src="/bart.png"
         bitten={bitten}
         onOpenBurns={() => setBurnsOpen(true)}
         onOpenHomer={() => setHomerOpen(true)}
-        onOpenNelson={() => setNelsonOpen(true)}
+        onOpenBart={() => setBartOpen(true)}
 
         />
      
-      <div className="b-6">
-        <DonutButton onClick={toggleBurns} />
-      </div>
+     
 
 
-<BurnsWindow isOpen={burnsOpen} onClose={() => setBurnsOpen(false)} onOpenHomer={toggleHomer} src="/homero.png" />
+      <BurnsWindow isOpen={burnsOpen} onClose={() => setBurnsOpen(false)} onOpenHomer={toggleBurns} src="/burns.png" />
+      <BartWindow isOpen={bartOpen} onClose={() => setBartOpen(false)} onOpenBart={toggleBart} src="/bartfalling.png" />
 
-    
-      <div className="mt-6">
-        <DonutButton onClick={()=>setNelsonOpen(nelsonOpen)} />
-      </div>
+      <HomerWindow isOpen={homerOpen} onClose={() => setHomerOpen(false)} onOpenHomer={toggleHomer} src="/homero.png"/>
+
 
   
       
 
       
-      <HomerWindow isOpen={homerOpen} onClose={() => setHomerOpen(false)} />
     </div>
   );
 }

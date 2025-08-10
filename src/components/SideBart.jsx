@@ -1,8 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
-import DonutBitten from "./DonutBitten";
+import DonutBurpy from "./DonutBurpy";
+import HomerWindow from "./HomerWindow";
+import BurnsWindow from "./BurnsWindow";
+import BartWindow from "./BartWindow";
 
 
-export default function SideBart({ isOpen, onClose, side = "right", src = "/bartred.png", onOpenBurns, onOpenHomer, onOpenNelson }) {
+export default function SideBart({ isOpen, onClose, side = "right", src = "/bart.png", onOpenBurns, onOpenHomer, onOpenBart }) {
 
   const initial = side === "left" ? { x: "-100%" } : { x: "100%" };
   const exit = side === "left" ? { x: "-100%" } : { x: "100%" };
@@ -15,18 +18,20 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
   // Ahora cada botón llama su función correspondiente y cierra sidebar igual que antes
   const handleOpenBurns = () => {
    onOpenBurns();
-    handleCloseClick();
   };
 
   const handleOpenHomer = () => {
   onOpenHomer();
-    handleCloseClick();
+  
   };
 
-  const handleOpenNelson = () => {
-    onOpenNelson();
-    handleCloseClick();
+  const handleOpenBart = () => {
+  onOpenBart();
+  
   };
+
+    
+  
 
   return (
     <AnimatePresence>
@@ -35,12 +40,12 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
           initial={initial}
           animate={{ x: 0 }}
           exit={exit}
-          transition={{ type: "tween", duration: 1 }}
+          transition={{ type: "tween", duration: 2 }}
           style={{
             position: "fixed",
-            top: 0,
+            top: "-20px",
             height: "100vh",
-            width: 500,
+            width: 600,
             zIndex: 1050,
             background: "transparent",
             padding: 18,
@@ -54,29 +59,38 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
           <img
             src={src}
             alt="Bart"
-            style={{ position: "absolute", width: "60%", marginTop: 0, marginRight: "-60%" }}
+            style={{ position: "absolute", width: "70%", marginTop: 0, marginRight: "-60%" }}
           />
 
           {/* Botones principales */}
-          <div style={{ marginTop: 10, width: "40%", display: "flex", flexDirection: "column", gap: 2 }}>
-            <DonutBitten
+          <div style={{ marginTop: 10, width: "10%", display: "flex", flexDirection: "column", gap: 2, zIndex: 2000 }}>
+            <DonutBurpy
               onClick={handleOpenBurns}
-              style={{ width: "100%", padding: 10, borderRadius: 8, border: "none" }}
+              style={{ width: "20%", padding: 10, borderRadius: 8, border: "none" }}
             >
               Burns
-            </DonutBitten>
-            <DonutBitten
+            </DonutBurpy>
+            <BurnsWindow/>
+            <DonutBurpy
               onClick={handleOpenHomer}
               style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
             >
               Homer
-            </DonutBitten>
-            <DonutBitten
-              onClick={handleCloseClick}
+            </DonutBurpy>
+            <HomerWindow/>
+            <DonutBurpy
+              onClick={handleOpenBart}
               style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
             >
+              bart
+            </DonutBurpy>
+            <BartWindow/>
+            <DonutBurpy
+              onClick={handleCloseClick}
+              style={{ width: "50%",  border: "none" }}
+            >
               Regresar
-            </DonutBitten>
+            </DonutBurpy>
           </div>
 
           <img
@@ -85,24 +99,8 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
             style={{ position: "absolute", width: "60%", marginTop: 0, marginRight: "-60%" }}
           />
 
-          <div style={{ marginTop: 50, width: "50%" }}>
-            {/* Aquí los botones con sus handlers sin mover posición ni estilo */}
-            <DonutBitten
-              onClick={handleOpenBurns}
-              style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
-            >
-            </DonutBitten>
-            <DonutBitten
-              onClick={handleOpenHomer}
-              style={{ width: "50%", padding: 10, marginTop: 8, borderRadius: 8, border: "none" }}
-            >
-            </DonutBitten>
-            <DonutBitten
-              onClick={handleOpenNelson}
-              style={{ width: "50%", padding: 10, marginTop: 8, borderRadius: 8, border: "none" }}
-            >
-            </DonutBitten>
-          </div>
+          
+        
         </motion.aside>
       )}
     </AnimatePresence>

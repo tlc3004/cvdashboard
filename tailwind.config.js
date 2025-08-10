@@ -4,8 +4,16 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-    extend: {},
+ theme: {
+    extend: {
+      colors: {
+        brandGreen: '#3a3',
+      },
+      screens: {
+        'xs': '480px',
+        '3xl': '1920px',
+      },
+    },
   },
   plugins: [],
 }

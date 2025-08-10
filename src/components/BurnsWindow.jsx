@@ -11,7 +11,7 @@ export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
     if (isOpen) {
       timer = setTimeout(() => {
         setNelsonOpen(true);
-      }, 1000); // 2 segundos después de abrir BurnsWindow
+      }, 2000); // 2 segundos después de abrir BurnsWindow
     } else {
       setNelsonOpen(false); // cerrar NelsonModal si BurnsWindow se cierra
     }
@@ -46,11 +46,12 @@ export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
             zIndex: 9999,
           }}
         >
-          <h1 style={{ color: "white", fontSize: "2rem" }}>Ventana de Burns</h1>
+          
           <DonutButton
             onClick={onClose}
             style={{
-              marginTop: 20,
+              position: "relative",
+              marginBottom: "30px",
               padding: "10px 20px",
               background: "red",
               color: "white",
@@ -61,7 +62,7 @@ export default function BurnsWindow({ isOpen, onClose, onOpenHomer }) {
           >
             Cerrar Burns
           </DonutButton>
-          <DonutButton onClick={onOpenHomer} />
+          
 
           {/* NelsonModal aparece automáticamente después del delay */}
           <NelsonModal isOpen={nelsonOpen} onClose={closeNelson} />

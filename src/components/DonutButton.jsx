@@ -10,7 +10,7 @@ export default function DonutButton({ onClick }) {
       setBitte(true);
       play();              
       if (onClick) onClick();
-      setTimeout(() => setBitte(false), 400);
+      setTimeout(() => setBitte(false), 600);
     }
   };
 
