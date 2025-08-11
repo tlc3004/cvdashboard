@@ -1,10 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import useSound from "use-sound";
 import ModalHomer from "./ModalHomer";
 import DonutButton from "./DonutButton";
 import ModalBart from "./ModalBart";
 
-export default function BartWindow({ isOpen, onClose }) {
+export default function BartWindow({  isOpen, onClose }) {
+  const [play] = useSound("/sounds/burpy-rulp.mp3");
   const [homerOpen, setHomerOpen] = useState(false);
   const [bartFall, setBartFall] = useState(false);
 
@@ -43,12 +45,29 @@ export default function BartWindow({ isOpen, onClose }) {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             display: "flex",
-            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             zIndex: 9999,
           }}
         >
+             <button
+              onClick={play}
+              style={{
+                width: 400,
+                height: 600,
+                backgroundImage: "url('/duff-1.png')",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                border: "none",
+                borderRadius: 5,
+                cursor: "pointer",
+                textIndent: "-9999px",
+              }}
+            >
+              Play Sound
+            </button>
+         
           {/* DonutButton fijo arriba a la izquierda */}
           <div
             style={{

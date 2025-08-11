@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import useSound from "use-sound";
 import DonutButton from "./DonutButton";
+import ModalBart from "./ModalBart";
 
 export default function HomerWindow({ isOpen, onClose }) {
   const [play] = useSound("/sounds/burpy-rulp.mp3");
@@ -26,32 +27,33 @@ export default function HomerWindow({ isOpen, onClose }) {
             alignItems: "center",
             paddingRight: 0,
           }}
-        >
-          <img
+        >   <img className="relative transition-transform duration-500 translate-x-[-300px] translate-x-[100px] ease-in"
             src="/homero.png"
             alt="Homer"
             style={{
               height: "100%",
+              left: "10%",
               objectFit: "contain",
               display: "block",
             }}
           />
+       
 
           <div
             style={{
               position: "absolute",
               top: 50,
               left: 20,
-              color: "black",
+              color: "#000",
               width: "50%",
             }}
           >
             <button
               onClick={play}
               style={{
-                width: 400,
-                height: 600,
-                backgroundImage: "url('/duff.png')",
+                width: 200,
+                height: 400,
+                backgroundImage: "url('/homerohungry.png')",
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
@@ -64,6 +66,7 @@ export default function HomerWindow({ isOpen, onClose }) {
               Play Sound
             </button>
           </div>
+
 
           {/* Aquí el DonutButton fijo en esquina superior izquierda */}
           <div
