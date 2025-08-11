@@ -16,7 +16,7 @@ export default function App() {
     if (!bitten) {
       setBitten(true);
       setSideOpen(prev => !prev);
-      setTimeout(() => setBitten(false), 500);
+      setTimeout(() => setBitten(false));
     }
   };
 

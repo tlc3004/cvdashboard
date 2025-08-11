@@ -2,13 +2,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import ModalHomer from "./ModalHomer";
 import DonutButton from "./DonutButton";
+import ModalBart from "./ModalBart";
 
 export default function BartWindow({ isOpen, onClose }) {
   const [homerOpen, setHomerOpen] = useState(false);
+  const [bartFall, setBartFall] = useState(false);
 
   useEffect(() => {
     let timer;
     if (isOpen) {
+      setBartFall(true)
       timer = setTimeout(() => setHomerOpen(true), 500);
     } else {
       setHomerOpen(false);
@@ -16,7 +19,10 @@ export default function BartWindow({ isOpen, onClose }) {
     return () => clearTimeout(timer);
   }, [isOpen]);
 
+
+
   const homerClose = () => setHomerOpen(false);
+  const bartClose = () => setBartFall(false);
 
   return (
     <AnimatePresence>
@@ -32,8 +38,8 @@ export default function BartWindow({ isOpen, onClose }) {
             left: 0,
             width: "100vw",
             height: "100vh",
-            backgroundImage: "url('/bartfalling.png')",
-            backgroundSize: "cover",
+            backgroundColor:"#fff",
+            backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             display: "flex",
@@ -58,7 +64,7 @@ export default function BartWindow({ isOpen, onClose }) {
             <DonutButton onClick={onClose} />
           </div>
             <div>
-                
+                <ModalBart isOpen={bartFall} onClose={bartClose}/>
             </div>
 
 

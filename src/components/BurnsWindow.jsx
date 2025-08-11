@@ -9,7 +9,7 @@ export default function BurnsWindow({ isOpen, onClose }) {
   useEffect(() => {
     let timer;
     if (isOpen) {
-      timer = setTimeout(() => setNelsonOpen(true), 2000);
+      timer = setTimeout(() => setNelsonOpen(true), 1000);
     } else {
       setNelsonOpen(false);
     }
@@ -48,7 +48,7 @@ export default function BurnsWindow({ isOpen, onClose }) {
             style={{
               position: "fixed",
               top: 20,
-              left: 20,
+              right: 20,
               width: 100,
               height: 100,
               zIndex: 10000,
