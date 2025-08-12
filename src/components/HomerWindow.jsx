@@ -1,10 +1,30 @@
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useSound from "use-sound";
 import DonutButton from "./DonutButton";
-import ModalBart from "./ModalBart";
 
 export default function HomerWindow({ isOpen, onClose }) {
+  const [showHomer, setShowHomer] = useState(false);
   const [play] = useSound("/sounds/burpy-rulp.mp3");
+
+  useEffect(() => {
+    if (isOpen) {
+      // Mostrar Homero después de 2s
+      const showTimer = setTimeout(() => {
+        setShowHomer(true);
+      }, 2000);
+
+      // Ocultar Homero después de 5s (2s delay + 3s visible)
+      const hideTimer = setTimeout(() => {
+        setShowHomer(false);
+      }, 5000);
+
+      return () => {
+        clearTimeout(showTimer);
+        clearTimeout(hideTimer);
+      };
+    }
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -27,53 +47,54 @@ export default function HomerWindow({ isOpen, onClose }) {
             alignItems: "center",
             paddingRight: 0,
           }}
-        >   <img className="relative transition-transform duration-500 translate-x-[-300px] translate-x-[100px] ease-in"
-            src="/homero.png"
-            alt="Homer"
-            style={{
-              height: "100%",
-              left: "10%",
-              objectFit: "contain",
-              display: "block",
-            }}
-          />
-       
+        >
+          {/* Solo la imagen de Homero entra y sale */}
+          <AnimatePresence>
+            {showHomer && (
+              <motion.img
+                key="homer-img"
+                src="/homero.png"
+                alt="Homer"
+                initial={{ x: 600 }}
+                animate={{ x: 0 }}
+                exit={{ x: 100 }}
+                transition={{ duration: 6, ease: "easeInOut" }}
+                style={{
+                  height: "100%",
+                  left: "10%",
+                  objectFit: "contain",
+                  display: "block",
+                }}
+              />
+            )}
+          </AnimatePresence>
 
-          <div
+          {/* Botón siempre visible */}
+          <button
+            onClick={play}
             style={{
-              position: "absolute",
-              top: 50,
-              left: 20,
-              color: "#000",
-              width: "50%",
+              top: 0,
+              width: 200,
+              height: 400,
+              backgroundImage: "url('/homerohungry.png')",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              border: "none",
+              borderRadius: 5,
+              cursor: "pointer",
+              textIndent: "-9999px",
             }}
           >
-            <button
-              onClick={play}
-              style={{
-                width: 200,
-                height: 400,
-                backgroundImage: "url('/homerohungry.png')",
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                border: "none",
-                borderRadius: 5,
-                cursor: "pointer",
-                textIndent: "-9999px",
-              }}
-            >
-              Play Sound
-            </button>
-          </div>
+            Play Sound
+          </button>
 
-
-          {/* Aquí el DonutButton fijo en esquina superior izquierda */}
+          {/* Botón de cierre */}
           <div
             style={{
               position: "fixed",
               top: 20,
-              left: 20,
+              left: 300,
               width: 100,
               height: 100,
               zIndex: 10000,

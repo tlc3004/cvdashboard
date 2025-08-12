@@ -29,7 +29,7 @@ export default function ModalBart({ isOpen }) {
             alt="bartfallig"
             style={{
               position: "relative",
-              top: -50,
+              top: -80,
               left: "-100%",
               width: "100%",
               zIndex: 100,

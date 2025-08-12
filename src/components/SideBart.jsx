@@ -12,7 +12,7 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
   };
 
   // Llaman funciones externas, sin más rollos
-  const handleOpenBurns = () => onOpenBurns();
+  const handleOpenBurns = () => onOpenBurns(onClose);
   const handleOpenHomer = () => onOpenHomer();
   const handleOpenBart = () => onOpenBart();
 
