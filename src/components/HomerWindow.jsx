@@ -12,16 +12,14 @@ export default function HomerWindow({ isOpen, onClose }) {
       // Mostrar Homero después de 2s
       const showTimer = setTimeout(() => {
         setShowHomer(true);
-      }, 2000);
+      }, 100);
 
       // Ocultar Homero después de 5s (2s delay + 3s visible)
-      const hideTimer = setTimeout(() => {
-        setShowHomer(false);
-      }, 5000);
+
 
       return () => {
         clearTimeout(showTimer);
-        clearTimeout(hideTimer);
+      
       };
     }
   }, [isOpen]);
@@ -55,46 +53,34 @@ export default function HomerWindow({ isOpen, onClose }) {
                 key="homer-img"
                 src="/homero.png"
                 alt="Homer"
-                initial={{ x: 600 }}
+                initial={{ x: 400 }}
                 animate={{ x: 0 }}
-                exit={{ x: 100 }}
-                transition={{ duration: 6, ease: "easeInOut" }}
+                exit={{ x: 900 }}
+                transition={{ duration: 3, ease: "easeOut" }}
                 style={{
                   height: "100%",
-                  left: "10%",
-                  objectFit: "contain",
+                  left: "50%",
+                  objectFit: "cover",
                   display: "block",
                 }}
               />
             )}
           </AnimatePresence>
 
-          {/* Botón siempre visible */}
+        
           <button
             onClick={play}
-            style={{
-              top: 0,
-              width: 200,
-              height: 400,
-              backgroundImage: "url('/homerohungry.png')",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              border: "none",
-              borderRadius: 5,
-              cursor: "pointer",
-              textIndent: "-9999px",
-            }}
+              className="absolute top-5 left-2  w-90 h-40 md:w-48 md:h-48 bg-cover bg-no-repeat bg-center border-none rounded-md cursor-pointer z-40"
+            style={{ backgroundImage: "url('/homerohungry.png')" }}
           >
-            Play Sound
           </button>
 
           {/* Botón de cierre */}
           <div
             style={{
               position: "fixed",
-              top: 20,
-              left: 300,
+              top: 50,
+              left: 200,
               width: 100,
               height: 100,
               zIndex: 10000,

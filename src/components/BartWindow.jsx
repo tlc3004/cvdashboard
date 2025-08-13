@@ -5,25 +5,22 @@ import ModalHomer from "./ModalHomer";
 import DonutButton from "./DonutButton";
 import ModalBart from "./ModalBart";
 
-export default function BartWindow({  isOpen, onClose }) {
+export default function BartWindow({ isOpen, onClose }) {
   const [play] = useSound("/sounds/burpy-rulp.mp3");
-  const [homerOpen, setHomerOpen] = useState(false);
+  const [homerOpen, setHomerOpen] = useState(true); // Homero siempre visible
   const [bartFall, setBartFall] = useState(false);
 
   useEffect(() => {
-    let timer;
     if (isOpen) {
-      setBartFall(true)
-      timer = setTimeout(() => setHomerOpen(true), 500);
+      setBartFall(true); 
+      setHomerOpen(true)
+      // Bart empieza a caer
     } else {
-      setHomerOpen(false);
+      setBartFall(false);
     }
-    return () => clearTimeout(timer);
   }, [isOpen]);
 
-
-
-  const homerClose = () => setHomerOpen(false);
+  const homerClose = () => setHomerOpen(true);
   const bartClose = () => setBartFall(false);
 
   return (
@@ -31,63 +28,38 @@ export default function BartWindow({  isOpen, onClose }) {
       {isOpen && (
         <motion.div
           key="bart-window"
+          className="fixed inset-0 bg-white flex justify-center items-center z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor:"#fff",
-            backgroundSize: "contain",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 9999,
-          }}
         >
-             <button
-              onClick={play}
-              style={{
-                width: 400,
-                height: 600,
-                backgroundImage: "url('/duff-1.png')",
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-                border: "none",
-                borderRadius: 5,
-                cursor: "pointer",
-                textIndent: "-9999px",
-              }}
-            >
-              Play Sound
-            </button>
-         
-          {/* DonutButton fijo arriba a la izquierda */}
-          <div
-            style={{
-              position: "fixed",
-              top: 20,
-              left: 20,
-              width: 100,
-              height: 100,
-              zIndex: 10000,
-              cursor: "pointer",
-            }}
+          {/* Botón Duff arriba de Homero */}
+          <button
+            onClick={play}
+            className="relative top-0 left-9 w-[500px] h-[500px] bg-cover bg-no-repeat bg-center border-none rounded-md cursor-pointer"
+            style={{ backgroundImage: "url('/duff-1.png')" }}
           >
+          </button>
+
+          {/* DonutButton fijo arriba izquierda */}
+          <div className="fixed top-5 left-5 w-24 h-24 md:w-28 md:h-28 z-50 cursor-pointer">
             <DonutButton onClick={onClose} />
           </div>
-            <div>
-                <ModalBart isOpen={bartFall} onClose={bartClose}/>
-            </div>
 
+          {/* Homero */}
+          <div className="relative z-10">
+            <ModalHomer isOpen={homerOpen} onClose={homerClose} />
+          </div>
 
-          <ModalHomer isOpen={homerOpen} onClose={homerClose} />
+          {/* Bart cayendo encima de Homero */}
+          <motion.div
+            className="absolute z-20"
+            initial={{ y: -500, rotate: -15 }}
+            animate={{ y: 0, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 120, damping: 15 }}
+          >
+            <ModalBart isOpen={bartFall} onClose={bartClose} />
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

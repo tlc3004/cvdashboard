@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <div
-      className="relative min-h-screen overflow-hidden mb-0"
+      className="relative min-h-screen overflow-hidden mb-0 p-2 md:p-6"
       style={{
         backgroundImage: "url('/simpsoms.png')",
         backgroundSize: "cover",
@@ -31,17 +31,7 @@ export default function App() {
       }}
     >
       {/* DonutButton fijo arriba izquierda */}
-      <div
-        style={{
-          position: "fixed",
-          top: 20,
-          left: 20,
-          width: 100,
-          height: 100,
-          zIndex: 3000,
-          cursor: "pointer",
-        }}
-      >
+      <div className="fixed top-5 left-5 w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 z-30 cursor-pointer">
         <DonutButton bitten={bitten} onClick={toggleSideBart} />
       </div>
 
