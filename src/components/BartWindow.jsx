@@ -4,6 +4,7 @@ import useSound from "use-sound";
 import ModalHomer from "./ModalHomer";
 import DonutButton from "./DonutButton";
 import ModalBart from "./ModalBart";
+import NavBart from "./NavBart";
 
 export default function BartWindow({ isOpen, onClose }) {
   const [play] = useSound("/sounds/burpy-rulp.mp3");
@@ -38,6 +39,7 @@ export default function BartWindow({ isOpen, onClose }) {
      
                 <ModalBart  isOpen={onClose} />
          
+                <NavBart/>
         </motion.div>
       )}
     </AnimatePresence>

@@ -5,7 +5,7 @@ export default function NavBart({ isOpen, onClose, side = "left", src = "/bart1.
 
   const initial = side === "right" ? { x: "-100%" } : { x: "100%" };
   const exit = side === "right" ? { x: "-100%" } : { x: "100%" };
-  const sideStyle = side === "right" ? { left: 0 } : { right: 0 };
+  const sideStyle = side === "right" ? { right: 0 } : { left: 0 };
 
   const handleCloseClick = () => {
     if (onClose) onClose();
@@ -40,7 +40,7 @@ export default function NavBart({ isOpen, onClose, side = "left", src = "/bart1.
         >
           <img
             src={src}
-            alt="Bart"
+            alt="Bart1"
             style={{ position: "absolute", width: "70%", marginTop: 0, marginLeft: "-60%" }}
           />
 
@@ -76,8 +76,8 @@ export default function NavBart({ isOpen, onClose, side = "left", src = "/bart1.
 
           <img
             src={src}
-            alt="Bart"
-            style={{ position: "absolute", width: "60%", marginTop: 0, marginRight: "-60%" }}
+            alt="Bart1"
+            style={{ position: "absolute", width: "60%", marginTop: 0, marginLeft: "-60%" }}
           />
         </motion.aside>
       )}

@@ -4,6 +4,7 @@ import BurnsWindow from "./components/BurnsWindow";
 import HomerWindow from "./components/HomerWindow";
 import BartWindow from "./components/BartWindow";
 import SideBart from "./components/SideBart";
+import './Css/Global.css'
 
 export default function App(onClick) {
   const [sideOpen, setSideOpen] = useState(false);

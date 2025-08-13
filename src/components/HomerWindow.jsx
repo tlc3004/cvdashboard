@@ -43,7 +43,7 @@ export default function HomerWindow({ isOpen, onClose }) {
             paddingRight: 0,
           }}
         >
-          <NavBart/>
+         
           {/* Solo la imagen de Homero entra y sale */}
           <AnimatePresence>
             {showHomer && (
@@ -51,9 +51,9 @@ export default function HomerWindow({ isOpen, onClose }) {
                 key="homer-img"
                 src="/homero.png"
                 alt="Homer"
-                initial={{ x: 400 }}
-                animate={{ x: -400 }}
-                transition={{ duration: 6 }}
+                initial={{ x: -400 }}
+                animate={{ x: 400 }}
+                transition={{ duration: 8 }}
                 style={{
                   height: "100%",
                   left: "90%",
@@ -67,7 +67,7 @@ export default function HomerWindow({ isOpen, onClose }) {
         
           <button
             onClick={play}
-              className="absolute top-5 left-2  w-90 h-40 md:w-48 md:h-48 bg-cover bg-no-repeat bg-center border-none rounded-md cursor-pointer z-40 animate-flash"
+              className="absolute top-5 left-2  w-90 h-40 md:w-48 md:h-48 bg-cover bg-no-repeat bg-center "
             style={{ backgroundImage: "url('/homerohungry.png')" 
             }}
           >
