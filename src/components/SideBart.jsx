@@ -23,7 +23,7 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
           initial={initial}
           animate={{ x: 0 }}
           exit={exit}
-          transition={{ type: "tween", duration: 2 }}
+          transition={{  duration: 2 }}
           style={{
             position: "fixed",
             top: "-20px",
@@ -54,7 +54,7 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
 
             <DonutButton
               onClick={handleOpenHomer}
-              style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
+              style={{ width: "20%", padding: 10, borderRadius: 8, border: "none" }}
             >
               Homer
             </DonutButton>
@@ -68,7 +68,7 @@ export default function SideBart({ isOpen, onClose, side = "right", src = "/bart
 
             <DonutButton
               onClick={handleCloseClick}
-              style={{ width: "50%", border: "none" }}
+              style={{ width: "50%", padding: 10, borderRadius: 8, border: "none" }}
             >
               Regresar
             </DonutButton>

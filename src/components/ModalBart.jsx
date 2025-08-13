@@ -5,10 +5,10 @@ export default function ModalBart({ isOpen }) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ y: "100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "100%" }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          initial={{ x: "-200%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "400%" }}
+          transition={{ duration: 4, ease: "easeInOut" }}
           style={{
             position: "fixed",
             top: 100,
@@ -29,8 +29,8 @@ export default function ModalBart({ isOpen }) {
             alt="bartfallig"
             style={{
               position: "relative",
-              top: -80,
-              left: "-100%",
+              top: -50,
+              left: "-10%",
               width: "100%",
               zIndex: 100,
             }}

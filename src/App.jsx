@@ -5,7 +5,7 @@ import HomerWindow from "./components/HomerWindow";
 import BartWindow from "./components/BartWindow";
 import SideBart from "./components/SideBart";
 
-export default function App() {
+export default function App(onClick) {
   const [sideOpen, setSideOpen] = useState(false);
   const [burnsOpen, setBurnsOpen] = useState(false);
   const [homerOpen, setHomerOpen] = useState(false);
@@ -38,6 +38,7 @@ export default function App() {
       <SideBart
         isOpen={sideOpen}
         onClose={() => setSideOpen(false)}
+        onClick={() =>toggleSideBart(onClick)}
         side="right"
         src="/bart.png"
         bitten={bitten}
@@ -49,7 +50,7 @@ export default function App() {
       <BurnsWindow
         isOpen={burnsOpen}
         onClose={() => setBurnsOpen(false)}
-        onOpenHomer={toggleSideBart}
+       onClick={() =>toggleSideBart(onClick)}
         src="/burns.png"
       />
 
@@ -57,6 +58,7 @@ export default function App() {
         isOpen={bartOpen}
         onClose={() => setBartOpen(false)}
         onOpenBart={() => setBartOpen(true)}
+         onClick={() =>toggleSideBart(onClick)}
         src="/bartfalling.png"
       />
 
@@ -64,6 +66,7 @@ export default function App() {
         isOpen={homerOpen}
         onClose={() => setHomerOpen(false)}
         onOpenHomer={() => setHomerOpen(true)}
+        onClick={() =>toggleSideBart(onClick)}
         src="/homero.png"
       />
     </div>

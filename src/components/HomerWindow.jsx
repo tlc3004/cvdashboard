@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useSound from "use-sound";
 import DonutButton from "./DonutButton";
+import NavBart from "./NavBart";
 
 export default function HomerWindow({ isOpen, onClose }) {
   const [showHomer, setShowHomer] = useState(false);
@@ -9,15 +10,11 @@ export default function HomerWindow({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      // Mostrar Homero después de 2s
+
       const showTimer = setTimeout(() => {
         setShowHomer(true);
       }, 100);
-
-      // Ocultar Homero después de 5s (2s delay + 3s visible)
-
-
-      return () => {
+  return () => {
         clearTimeout(showTimer);
       
       };
@@ -46,6 +43,7 @@ export default function HomerWindow({ isOpen, onClose }) {
             paddingRight: 0,
           }}
         >
+          <NavBart/>
           {/* Solo la imagen de Homero entra y sale */}
           <AnimatePresence>
             {showHomer && (
@@ -54,14 +52,13 @@ export default function HomerWindow({ isOpen, onClose }) {
                 src="/homero.png"
                 alt="Homer"
                 initial={{ x: 400 }}
-                animate={{ x: 0 }}
-                exit={{ x: 900 }}
-                transition={{ duration: 3, ease: "easeOut" }}
+                animate={{ x: -400 }}
+                transition={{ duration: 6 }}
                 style={{
                   height: "100%",
-                  left: "50%",
+                  left: "90%",
                   objectFit: "cover",
-                  display: "block",
+                  display: "inline",
                 }}
               />
             )}
@@ -70,8 +67,9 @@ export default function HomerWindow({ isOpen, onClose }) {
         
           <button
             onClick={play}
-              className="absolute top-5 left-2  w-90 h-40 md:w-48 md:h-48 bg-cover bg-no-repeat bg-center border-none rounded-md cursor-pointer z-40"
-            style={{ backgroundImage: "url('/homerohungry.png')" }}
+              className="absolute top-5 left-2  w-90 h-40 md:w-48 md:h-48 bg-cover bg-no-repeat bg-center border-none rounded-md cursor-pointer z-40 animate-flash"
+            style={{ backgroundImage: "url('/homerohungry.png')" 
+            }}
           >
           </button>
 

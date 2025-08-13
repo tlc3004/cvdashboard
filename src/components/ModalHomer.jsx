@@ -1,26 +1,8 @@
-import { useState, useEffect } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function ModalHomerAuto() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    // Abre después de 2 segundos
-    const openTimer = setTimeout(() => {
-      setIsOpen(true);
-    }, 2000);
-
-    // Cierra después de 5 segundos (2s delay + 3s visible)
-    const closeTimer = setTimeout(() => {
-      setIsOpen(false);
-    }, 5000);
-
-    return () => {
-      clearTimeout(openTimer);
-      clearTimeout(closeTimer);
-    };
-  }, []);
-
+export default function ModalHomer({isOpen}) {
+  
   return (
     <AnimatePresence>
       {isOpen && (
@@ -45,6 +27,7 @@ export default function ModalHomerAuto() {
           }}
         >
           <img
+       
             src="/omero.png"
             alt="Homero"
             style={{
